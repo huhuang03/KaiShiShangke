@@ -40,6 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        let state = application.applicationState
+        if (state == UIApplicationState.Active) {
+            let alertController = UIAlertController(title: "下课啦", message: nil, preferredStyle: .Alert)
+            self.window?.rootViewController?.presentViewController(alertController, animated: false, completion: nil)
+        }
+    }
 
 
 }

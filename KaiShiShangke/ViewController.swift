@@ -16,9 +16,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        notifycation = UILocalNotification()
         updateFinishClassUI()
+        let types = UIUserNotificationType(rawValue: UIUserNotificationType.Alert.rawValue | UIUserNotificationType.Badge.rawValue | UIUserNotificationType.Sound.rawValue)
+        let setting = UIUserNotificationSettings(forTypes: types, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(setting)
+        
+        notifycation = UILocalNotification()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,20 +41,15 @@ class ViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setInteger(timeInInt, forKey: KEY_BEGIN_TIME)
         
+        
         updateFinishClassUI()
         
-//        notifycation.fireDate = NSDate(timeIntervalSince1970: (current + 45 * 60 * 1000))
-//        notifycation.fireDate = NSDate().dateByAddingTimeInterval(1)
-        notifycation.fireDate = NSDate(timeIntervalSinceNow: 20 * 60)
-//        notifycation.repeatInterval = .Weekday
+        notifycation.fireDate = NSDate().dateByAddingTimeInterval(45 * 60)
         notifycation.timeZone = NSTimeZone.defaultTimeZone()
-        notifycation.alertBody = "下课啦"
-        notifycation.alertAction = "alertAction"
-        notifycation.hasAction = false
         notifycation.soundName = UILocalNotificationDefaultSoundName
+        notifycation.alertBody = "下课啦"
         notifycation.applicationIconBadgeNumber = -1
         
-        UIApplication.sharedApplication().cancelLocalNotification(notifycation)
         UIApplication.sharedApplication().scheduleLocalNotification(notifycation)
     }
     
