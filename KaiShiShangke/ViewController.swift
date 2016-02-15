@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         updateFinishClassUI()
         
         notifycation.fireDate = NSDate().dateByAddingTimeInterval(45 * 60)
+//        notifycation.repeatInterval = 
         notifycation.timeZone = NSTimeZone.defaultTimeZone()
         notifycation.soundName = UILocalNotificationDefaultSoundName
         notifycation.alertBody = "下课啦"
